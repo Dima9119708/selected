@@ -1,123 +1,127 @@
-<script lang="ts" setup>
-import { computed, defineProps, ref, useTemplateRef } from 'vue'
+<script lang="ts">
+import { type PropType } from 'vue'
 
-import type { RangeSliderSteps } from '@/shared/ui/ui-range/types'
-
-const props = defineProps<{
-    steps: Array<RangeSliderSteps>
-}>()
-
-const sliderBarRef = useTemplateRef('rz-bar')
-const model = defineModel<{ min: RangeSliderSteps | null; max: RangeSliderSteps | null } | null>()
+import type { RangeSliderSteps } from './types'
 
 const DEFAULT_MIN = 0
 const DEFAULT_MAX = 100
-const steps = props.steps
-
-const selectedMin = ref(DEFAULT_MIN)
-const selectedMax = ref(DEFAULT_MAX)
-const minLabel = ref(steps[0].label)
-const maxLabel = ref(steps[steps.length - 1].label)
-
-const minPointerRef = useTemplateRef('rz-pointer-min')
-const maxPointerRef = useTemplateRef('rz-pointer-max')
-
 let activePointerType: 'min' | 'max' | null = null
 
-const stepPositions = computed(() => {
-    const stepInterval = DEFAULT_MAX / (steps.length - 1)
-    const stepRadius = stepInterval / 2
+export default {
+    props: {
+        steps: {
+            type: Array as PropType<Array<RangeSliderSteps>>,
+            required: true,
+        },
+        modelValue: {
+            type: Object as PropType<{ min: RangeSliderSteps | null; max: RangeSliderSteps | null } | null>,
+        },
+    },
+    emits: {
+        'update:modelValue': (payload: { min: RangeSliderSteps | null; max: RangeSliderSteps | null }) => {
+            return 'min' in payload && 'max' in payload
+        },
+    },
+    data() {
+        return {
+            selectedMin: DEFAULT_MIN,
+            selectedMax: DEFAULT_MAX,
+            minLabel: this.steps[0].label,
+            maxLabel: this.steps[this.steps.length - 1].label,
+        }
+    },
+    computed: {
+        stepPositions() {
+            const stepInterval = DEFAULT_MAX / (this.steps.length - 1)
+            const stepRadius = stepInterval / 2
 
-    return steps.map(({ label }, index) => ({
-        label,
-        position: index * stepInterval,
-        minBound: index * stepInterval - stepRadius,
-        maxBound: index * stepInterval + stepRadius,
-    }))
-})
+            return this.steps.map(({ label }, index) => ({
+                label,
+                position: index * stepInterval,
+                minBound: index * stepInterval - stepRadius,
+                maxBound: index * stepInterval + stepRadius,
+            }))
+        },
+        maxLabelTranslateX() {
+            if (Math.floor(this.selectedMax) === 100) {
+                return `translateX(calc(-50% + 3.5px))`
+            }
 
-const calculatePositionPercentage = (clientX: number, barElement: HTMLElement) => {
-    const { x: barX, width: barWidth } = barElement.getBoundingClientRect()
-    const relativeX = clientX - barX
-    const clampedX = Math.max(0, Math.min(relativeX, barWidth))
-    return (clampedX / barWidth) * 100
+            if (Math.floor(this.selectedMax) === 0) {
+                return `translateX(calc(50% - 3.5px))`
+            }
+
+            return `translateX(0)`
+        },
+        minLabelTranslateX() {
+            if (Math.floor(this.selectedMin) === 100) {
+                return `translateX(calc(-50% + 3.5px))`
+            }
+
+            if (Math.floor(this.selectedMin) === 0) {
+                return `translateX(calc(50% - 3.5px))`
+            }
+
+            return `translateX(0)`
+        },
+    },
+    methods: {
+        calculatePositionPercentage(clientX: number, barElement: HTMLElement) {
+            const { x: barX, width: barWidth } = barElement.getBoundingClientRect()
+            const relativeX = clientX - barX
+            const clampedX = Math.max(0, Math.min(relativeX, barWidth))
+            return (clampedX / barWidth) * 100
+        },
+        updateSelection(percentage: number, target: 'min' | 'max') {
+            const activeStep = this.stepPositions.find(({ minBound, maxBound }) => percentage >= minBound && percentage <= maxBound)
+
+            if (!activeStep) return
+
+            if (target === 'min') {
+                this.selectedMin = Math.min(this.selectedMax, activeStep.position)
+                this.minLabel = this.selectedMin === this.selectedMax ? this.maxLabel : activeStep.label
+            } else {
+                this.selectedMax = Math.max(this.selectedMin, activeStep.position)
+                this.maxLabel = this.selectedMax === this.selectedMin ? this.minLabel : activeStep.label
+            }
+        },
+        handlePointerMove(event: PointerEvent) {
+            if (!this.$refs['rz-bar'] || !activePointerType) return
+
+            const percentage = this.calculatePositionPercentage(event.x, this.$refs['rz-bar'])
+            this.updateSelection(percentage, activePointerType)
+        },
+        handlePointerInteractionStart(target: 'min' | 'max') {
+            activePointerType = target
+            window.addEventListener('pointermove', this.handlePointerMove)
+            window.addEventListener('pointerup', this.handlePointerInteractionEnd)
+        },
+        handlePointerInteractionEnd() {
+            activePointerType = null
+
+            const min = this.steps.find((value) => value.label === this.minLabel)
+            const max = this.steps.find((value) => value.label === this.maxLabel)
+
+            this.$emit('update:modelValue', { min: min ?? null, max: max ?? null })
+
+            window.removeEventListener('pointermove', this.handlePointerMove)
+            window.removeEventListener('pointerup', this.handlePointerInteractionEnd)
+        },
+        handleBarClick(event: PointerEvent) {
+            if (!this.$refs['rz-bar']) return
+
+            const percentage = this.calculatePositionPercentage(event.x, this.$refs['rz-bar'])
+            const minPointerRect = this.$refs['rz-pointer-min'].getBoundingClientRect()
+            const maxPointerRect = this.$refs['rz-pointer-max'].getBoundingClientRect()
+
+            const closestPointer = Math.abs(event.x - minPointerRect.x) < Math.abs(event.x - maxPointerRect.x) ? 'min' : 'max'
+
+            const shouldUpdateMax = this.selectedMin === this.selectedMax && event.x > Math.max(minPointerRect.x, maxPointerRect.x)
+
+            this.updateSelection(percentage, shouldUpdateMax ? 'max' : closestPointer)
+        },
+    },
 }
-
-const updateSelection = (percentage: number, target: 'min' | 'max') => {
-    const activeStep = stepPositions.value.find(({ minBound, maxBound }) => percentage >= minBound && percentage <= maxBound)
-
-    if (!activeStep) return
-
-    if (target === 'min') {
-        selectedMin.value = Math.min(selectedMax.value, activeStep.position)
-        minLabel.value = selectedMin.value === selectedMax.value ? maxLabel.value : activeStep.label
-    } else {
-        selectedMax.value = Math.max(selectedMin.value, activeStep.position)
-        maxLabel.value = selectedMax.value === selectedMin.value ? minLabel.value : activeStep.label
-    }
-}
-
-const handlePointerMove = (event: PointerEvent) => {
-    if (!sliderBarRef.value || !activePointerType) return
-
-    const percentage = calculatePositionPercentage(event.x, sliderBarRef.value)
-    updateSelection(percentage, activePointerType)
-}
-
-const handlePointerInteractionStart = (target: 'min' | 'max') => {
-    activePointerType = target
-    window.addEventListener('pointermove', handlePointerMove)
-    window.addEventListener('pointerup', handlePointerInteractionEnd)
-}
-
-const handleBarClick = (event: PointerEvent) => {
-    if (!sliderBarRef.value) return
-
-    const percentage = calculatePositionPercentage(event.x, sliderBarRef.value)
-    const minPointerRect = minPointerRef.value!.getBoundingClientRect()
-    const maxPointerRect = maxPointerRef.value!.getBoundingClientRect()
-
-    const closestPointer = Math.abs(event.x - minPointerRect.x) < Math.abs(event.x - maxPointerRect.x) ? 'min' : 'max'
-
-    const shouldUpdateMax = selectedMin.value === selectedMax.value && event.x > Math.max(minPointerRect.x, maxPointerRect.x)
-
-    updateSelection(percentage, shouldUpdateMax ? 'max' : closestPointer)
-}
-
-const handlePointerInteractionEnd = () => {
-    activePointerType = null
-
-    const min = props.steps.find((value) => value.label === minLabel.value)
-    const max = props.steps.find((value) => value.label === maxLabel.value)
-
-    model.value = { min: min ?? null, max: max ?? null }
-    window.removeEventListener('pointermove', handlePointerMove)
-    window.removeEventListener('pointerup', handlePointerInteractionEnd)
-}
-
-const maxLabelTranslateX = computed(() => {
-    if (Math.floor(selectedMax.value) === 100) {
-        return `translateX(calc(-50% + 3.5px))`
-    }
-
-    if (Math.floor(selectedMax.value) === 0) {
-        return `translateX(calc(50% - 3.5px))`
-    }
-
-    return `translateX(0)`
-})
-
-const minLabelTranslateX = computed(() => {
-    if (Math.floor(selectedMin.value) === 100) {
-        return `translateX(calc(-50% + 3.5px))`
-    }
-
-    if (Math.floor(selectedMin.value) === 0) {
-        return `translateX(calc(50% - 3.5px))`
-    }
-
-    return `translateX(0)`
-})
 </script>
 
 <template>
