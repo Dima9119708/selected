@@ -1,0 +1,21 @@
+.p-input {
+    width: 100%;
+    outline: none;
+    padding: 7px 16px;
+    color: var(--sui-input_color__base);
+    font-size: var(--sui-typography_desktop_body_fontsize);
+    border: 1px;
+    border-style: solid;
+    border-color: var(--sui-input_border_color__base);
+    border-radius: 6px;
+
+    &:focus {
+        box-shadow: 0 0 0 4px var(--sui-select_border__pressed);
+    }
+
+    &:hover {
+        border-color: var(--sui-input_border_color__hover);
+        border-right-width: 1px;
+        z-index: 1;
+    }
+}

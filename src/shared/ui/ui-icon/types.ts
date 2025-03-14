@@ -1,0 +1,1 @@
+export type TIcons = 'bell' | 'book' | 'cloud' | 'contact' | 'credit-card' | 'dashboard' | 'dns' | 'group' | 'home' | 'kvm' | 'monitor' | 'private-network' | 'report' | 'request_page' | 'settings' | 'two-psu' | 'user';

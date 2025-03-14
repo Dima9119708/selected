@@ -1,0 +1,9 @@
+{
+  "logo": "Logo",
+  "prebuilt_servers": "Prebuilt Servers",
+  "server_configurator": "Server Configurator",
+  "gpu_server_configurator": "GPU Server Configurator",
+  "fstec_servers": "FSTEC servers",
+  "server_available": "{count} server available | {count} servers available",
+  "available_servers_amount": "{count} configurations | {count} configurations"
+}

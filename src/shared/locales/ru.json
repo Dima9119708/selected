@@ -1,0 +1,5 @@
+{
+  "logo": "Logo {{name}} {{a}} {{b}} {{c}}",
+  "user-profile": "User profile",
+  "available_servers_amount": "нет конфигураций | {n} конфигурация | {n} конфигурации | {n} конфигураций"
+}
