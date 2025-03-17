@@ -1,8 +1,6 @@
-<script lang="ts" setup="">
-import { storeToRefs } from 'pinia'
-import { computed, defineAsyncComponent, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
+<script lang="ts">
+import { mapActions, mapState } from 'pinia'
+import { defineAsyncComponent } from 'vue'
 
 import { useAuthStore } from '@/features/auth/use-auth.ts'
 
@@ -12,73 +10,84 @@ import { loadLocaleMessages } from '@/shared/configs/i18n/i18n'
 import { ROUTE_PATHS } from '@/shared/configs/routes/routes'
 import AppShell from '@/shared/ui/app-shell/ui-app-shell.vue'
 import Header from '@/shared/ui/app-shell/ui-header/ui-header.vue'
-import { useHeaderConfig } from '@/shared/ui/app-shell/ui-header/use-header-config.ts'
 import Main from '@/shared/ui/app-shell/ui-main.vue'
-import type { ToRoute } from '@/shared/ui/app-shell/ui-navbar/types.ts'
+import { mergeConfig } from '@/shared/ui/app-shell/ui-navbar/merge-config.ts'
 import Navbar from '@/shared/ui/app-shell/ui-navbar/ui-navbar.vue'
-import { useNavbarConfig } from '@/shared/ui/app-shell/ui-navbar/use-navbar-config.ts'
 
-const router = useRouter()
-const i18n = useI18n({
-    useScope: 'global',
-})
-
-const appLoading = ref(true)
-const authStore = useAuthStore()
-const { data, navigationItems, actionItems, permissionByRole } = storeToRefs(authStore)
-
-const navbarConfig = useNavbarConfig(navigationItems)
-
-const headerConfig = useHeaderConfig(actionItems, {
-    balance: {
-        component: defineAsyncComponent(() => import('@/widgets/balance/balance.vue')),
+export default {
+    components: {
+        AppShell,
+        Header,
+        Main,
+        Navbar,
+        SelectUsersByRoles,
     },
-    notices: {
-        component: defineAsyncComponent(() => import('@/widgets/notices/notices.vue')),
-    },
-    profile: {
-        component: defineAsyncComponent(() => import('@/widgets/profile/profile.vue')),
-    },
-})
-
-const activeRouteName = computed(() => {
-    if (typeof router.currentRoute.value.name === 'string') {
-        return router.currentRoute.value.name
-    }
-
-    return ''
-})
-
-const toRoute: ToRoute = (routeName) => {
-    switch (routeName) {
-        case ROUTE_PATHS.SERVERS_ORDER_PRE_BUILT.name:
-            return { name: routeName, params: { id: 'd736d7f16ae64eeb9b8047d03f38e74f' } }
-
-        default: {
-            return { name: routeName }
+    data() {
+        return {
+            appLoading: true,
         }
-    }
-}
-
-watch(
-    data,
-    async () => {
-        if (data.value) {
-            const hasAccess = permissionByRole.value.some((route) => route.name === router.currentRoute.value.name)
-
-            if (!hasAccess) {
-                await router.push(toRoute(permissionByRole.value[0].name))
+    },
+    computed: {
+        ...mapState(useAuthStore, ['isLoading', 'navigationItems', 'actionItems', 'permissionByRole', 'data']),
+        activeRouteName() {
+            if (typeof this.$router.currentRoute.value.name === 'string') {
+                return this.$router.currentRoute.value.name
             }
 
-            await loadLocaleMessages((messages) => {
-                i18n.setLocaleMessage(i18n.locale.value, messages)
-            }, i18n.locale.value)
-
-            appLoading.value = false
-        }
+            return ''
+        },
+        navbarConfig() {
+            return mergeConfig(this.navigationItems, {})
+        },
+        headerConfig() {
+            return mergeConfig(this.actionItems, {
+                balance: {
+                    component: defineAsyncComponent(() => import('@/widgets/balance/balance.vue')),
+                },
+                notices: {
+                    component: defineAsyncComponent(() => import('@/widgets/notices/notices.vue')),
+                },
+                profile: {
+                    component: defineAsyncComponent(() => import('@/widgets/profile/profile.vue')),
+                },
+            })
+        },
     },
-    { immediate: true }
-)
+    watch: {
+        data: {
+            async handler() {
+                if (this.data) {
+                    const hasAccess = this.permissionByRole.some((route) => route.name === this.$router.currentRoute.value.name)
+
+                    if (!hasAccess) {
+                        await this.$router.push(this.toRoute(this.permissionByRole[0].name))
+                    }
+
+                    await loadLocaleMessages((messages) => {
+                        this.$i18n.setLocaleMessage(this.$i18n.locale, messages)
+                    }, this.$i18n.locale)
+
+                    this.appLoading = false
+                }
+            },
+
+            immediate: true,
+        },
+    },
+    methods: {
+        toRoute(routeName) {
+            switch (routeName) {
+                case ROUTE_PATHS.SERVERS_ORDER_PRE_BUILT.name:
+                    return { name: routeName, params: { id: 'd736d7f16ae64eeb9b8047d03f38e74f' } }
+
+                default: {
+                    return { name: routeName }
+                }
+            }
+        },
+        ...mapActions(useAuthStore, ['onSingInAs']),
+    },
+}
 </script>
 
 <template>
@@ -93,7 +102,7 @@ watch(
             <strong>Sing in as</strong>
             <SelectUsersByRoles
                 :model-value="data"
-                @update:modelValue="authStore.onSingInAs"
+                @update:modelValue="onSingInAs"
                 class="w-[310px] ml-[15px]"
             />
         </div>

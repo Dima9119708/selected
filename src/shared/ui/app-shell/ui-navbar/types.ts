@@ -1,4 +1,4 @@
-import type { DefineComponent } from 'vue'
+import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 import type { TBadge } from '@/shared/ui/ui-badge/types'
@@ -14,7 +14,7 @@ export type NavigationItemConfig = {
         text: string
         variant: TBadge['variant']
     }
-    component?: DefineComponent
+    component?: Component
     children?: NavigationItemConfigChildren
 }
 

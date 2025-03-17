@@ -1,11 +1,16 @@
+import type { Component } from 'vue'
+
+type Children = Array<ItemConfig | ItemConfig[]>
+
 type ItemConfig = {
     name?: string
-    children?: ItemConfig[]
+    component?: Component
+    children?: Children
 }
 
 type Config = Array<ItemConfig | [string, ItemConfig[]]>
 
-type ConfigOverrides = Record<string, ItemConfig>
+export type ConfigOverrides = Record<string, ItemConfig>
 
 function mergeItemConfig<Item extends ItemConfig>(item: Item, overrides: ConfigOverrides): Item {
     const override = item.name ? overrides[item.name] : undefined
@@ -18,7 +23,7 @@ function mergeItemConfig<Item extends ItemConfig>(item: Item, overrides: ConfigO
     return mergedItem
 }
 
-function mergeItemConfigChildren<Children extends ItemConfig[]>(children: Children, overrides: ConfigOverrides): Children {
+function mergeItemConfigChildren<C extends Children>(children: C, overrides: ConfigOverrides): Children {
     return children.map<ItemConfig>((child) => {
         if (Array.isArray(child)) {
             return child.map((subChild) => mergeItemConfig(subChild, overrides))
@@ -29,7 +34,7 @@ function mergeItemConfigChildren<Children extends ItemConfig[]>(children: Childr
 }
 
 export function mergeConfig<C extends Config>(config: C, overrides: ConfigOverrides): C {
-    return config.map<ItemConfig | [string, ItemConfig[]]>((item) => {
+    return config.map<Config>((item) => {
         if (Array.isArray(item)) {
             const [title, items] = item
             return [title, items.map((subItem) => mergeItemConfig(subItem, overrides))]
