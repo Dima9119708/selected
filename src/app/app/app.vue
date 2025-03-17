@@ -50,7 +50,6 @@ const activeRouteName = computed(() => {
 })
 
 const toRoute: ToRoute = (routeName) => {
-    console.log('routeName =>', routeName)
     switch (routeName) {
         case ROUTE_PATHS.SERVERS_ORDER_PRE_BUILT.name:
             return { name: routeName, params: { id: 'd736d7f16ae64eeb9b8047d03f38e74f' } }

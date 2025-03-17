@@ -8,7 +8,7 @@ export const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: ROUTE_PATHS.SSL.path, name: ROUTE_PATHS.SSL.name, component: ComingSoon },
-        { path: ROUTE_PATHS.VOLUMES.path, name: ROUTE_PATHS.VOLUMES.path, component: ComingSoon },
+        { path: ROUTE_PATHS.VOLUMES.path, name: ROUTE_PATHS.VOLUMES.name, component: ComingSoon },
         { path: ROUTE_PATHS.NETWORKS.path, name: ROUTE_PATHS.NETWORKS.name, component: ComingSoon },
         { path: ROUTE_PATHS.FWAAS.path, name: ROUTE_PATHS.FWAAS.name, component: ComingSoon },
         { path: ROUTE_PATHS.SECURITY_GROUPS.path, name: ROUTE_PATHS.SECURITY_GROUPS.name, component: ComingSoon },
