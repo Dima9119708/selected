@@ -1,65 +1,77 @@
-<script lang="ts" setup="">
-import { computed, provide } from 'vue'
-import { useRouter } from 'vue-router'
+<script lang="ts">
+import { type PropType } from 'vue'
 
 import { filterItemsWithName, findParentChildrenByActiveRouteName, getStartingRouteName } from './libs.ts'
 import MenuItem from './menu-item.vue'
 import SubMenuItem from './submenu-item.vue'
 import type { NavigationConfig, NavigationItemConfig, ToRoute } from './types'
 
-const router = useRouter()
-
-const { config, activeRouteName, toRoute } = defineProps<{
-    config: NavigationConfig
-    activeRouteName: string
-    toRoute?: ToRoute
-}>()
-
-provide('NAVBAR_PROVIDE', {
-    toRoute,
-})
-
-const menu = computed(() => filterItemsWithName(config))
-const subMenu = computed(() => findParentChildrenByActiveRouteName(config, activeRouteName))
-
-const isActive = (children?: NavigationItemConfig[], routeName?: string) => {
-    if (Array.isArray(children) && Array.isArray(subMenu.value)) {
-        return children === subMenu.value
-    }
-
-    return routeName === activeRouteName
-}
-
-const onMenuClick = (menuItem: NavigationItemConfig) => {
-    const startingRouteName = getStartingRouteName([menuItem])
-
-    if (typeof toRoute === 'function') {
-        const data = toRoute(startingRouteName)
-
-        if (!data) {
-            router.push({ name: startingRouteName })
-        } else {
-            router.push(data)
+export default {
+    components: { MenuItem, SubMenuItem },
+    props: {
+        config: {
+            type: Object as PropType<NavigationConfig>,
+            required: true,
+        },
+        activeRouteName: {
+            type: String,
+            required: true,
+        },
+        toRoute: {
+            type: Function as PropType<ToRoute>,
+        },
+    },
+    provide() {
+        return {
+            toRoute: this.toRoute,
         }
-    } else {
-        router.push({ name: startingRouteName })
-    }
-}
+    },
+    computed: {
+        menu() {
+            return filterItemsWithName(this.config)
+        },
+        subMenu() {
+            return findParentChildrenByActiveRouteName(this.config, this.activeRouteName)
+        },
+    },
+    methods: {
+        isActive(children?: NavigationItemConfig[], routeName?: string) {
+            if (Array.isArray(children) && Array.isArray(this.subMenu)) {
+                return children === this.subMenu
+            }
 
-const getMenuKey = (item: NavigationItemConfig | [string, NavigationItemConfig[]]) => {
-    if (Array.isArray(item)) {
-        return `group-${item[0]}`
-    }
+            return routeName === this.activeRouteName
+        },
+        onMenuClick(menuItem: NavigationItemConfig) {
+            const startingRouteName = getStartingRouteName([menuItem])
 
-    return item.routeName || item.name
-}
+            if (typeof this.toRoute === 'function') {
+                const data = this.toRoute(startingRouteName)
 
-const getSubMenuKey = (subMenuItem: NavigationItemConfig | NavigationItemConfig[]) => {
-    if (Array.isArray(subMenuItem)) {
-        return subMenuItem[0].routeName
-    }
+                if (!data) {
+                    this.$router.push({ name: startingRouteName })
+                } else {
+                    this.$router.push(data)
+                }
+            } else {
+                this.$router.push({ name: startingRouteName })
+            }
+        },
+        getMenuKey(item: NavigationItemConfig | [string, NavigationItemConfig[]]) {
+            if (Array.isArray(item)) {
+                return `group-${item[0]}`
+            }
 
-    return subMenuItem.routeName
+            return item.routeName || item.name
+        },
+        getSubMenuKey(subMenuItem: NavigationItemConfig | NavigationItemConfig[]) {
+            if (Array.isArray(subMenuItem)) {
+                return subMenuItem[0].routeName
+            }
+
+            return subMenuItem.routeName
+        },
+    },
 }
 </script>
 

@@ -1,25 +1,47 @@
-<script setup lang="ts">
-import { inject } from 'vue'
+<script lang="ts">
+import { type PropType } from 'vue'
+
+import Icon from '@/shared/ui/ui-icon/ui-icon.vue'
 
 import Badge from '../../ui-badge/ui-badge.vue'
 import type { NavigationItemConfig, ToRoute } from './types.ts'
 
-const props = defineProps<Partial<Pick<NavigationItemConfig, 'icon' | 'name' | 'badge' | 'routeName'>>>()
+export default {
+    components: { Badge, Icon },
+    inject: {
+        toRoute: {
+            type: Function as PropType<ToRoute>,
+        },
+    },
+    props: {
+        icon: {
+            type: String as PropType<NavigationItemConfig['icon']>,
+        },
+        name: {
+            type: String as PropType<NavigationItemConfig['name']>,
+        },
+        badge: {
+            type: Object as PropType<NavigationItemConfig['badge']>,
+        },
+        routeName: {
+            type: String as PropType<NavigationItemConfig['routeName']>,
+        },
+    },
+    methods: {
+        to() {
+            if (typeof this.toRoute === 'function') {
+                const routeLocationRaw = this.toRoute(this.routeName)
 
-const value = inject('NAVBAR_PROVIDE') as { toRoute?: ToRoute }
+                if (routeLocationRaw) {
+                    return routeLocationRaw
+                }
 
-const to = () => {
-    if (typeof value.toRoute === 'function') {
-        const routeLocationRaw = value.toRoute(props.routeName)
+                return { name: this.routeName }
+            }
 
-        if (routeLocationRaw) {
-            return routeLocationRaw
-        }
-
-        return { name: props.routeName }
-    }
-
-    return { name: props.routeName }
+            return { name: this.routeName }
+        },
+    },
 }
 </script>
 <template>

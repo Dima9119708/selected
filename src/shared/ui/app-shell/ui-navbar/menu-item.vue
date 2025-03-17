@@ -1,45 +1,65 @@
-<script setup lang="ts">
-import { inject } from 'vue'
-import { RouterLink } from 'vue-router'
+<script lang="ts">
+import { type PropType } from 'vue'
 
 import Badge from '@/shared/ui/ui-badge/ui-badge.vue'
 import Icon from '@/shared/ui/ui-icon/ui-icon.vue'
 
 import { type NavigationItemConfig, type ToRoute } from './types'
 
-const props = defineProps<
-    Partial<
-        Pick<NavigationItemConfig, 'icon' | 'name' | 'badge' | 'routeName'> & {
-            active: boolean
+export default {
+    components: { Badge, Icon },
+    inject: {
+        toRoute: {
+            type: Function as PropType<ToRoute>,
+        },
+    },
+    props: {
+        icon: {
+            type: String as PropType<NavigationItemConfig['icon']>,
+        },
+        name: {
+            type: String as PropType<NavigationItemConfig['name']>,
+        },
+        badge: {
+            type: Object as PropType<NavigationItemConfig['badge']>,
+        },
+        routeName: {
+            type: String as PropType<NavigationItemConfig['routeName']>,
+        },
+        active: {
+            type: Boolean,
+        },
+    },
+    data() {
+        return {
+            propsComponent: this.routeName
+                ? {
+                      to: this.to(),
+                  }
+                : null,
         }
-    >
->()
+    },
+    methods: {
+        to() {
+            if (typeof this.toRoute === 'function') {
+                const routeLocationRaw = this.toRoute(this.routeName)
 
-const value = inject('NAVBAR_PROVIDE') as { toRoute?: ToRoute }
+                if (routeLocationRaw) {
+                    return routeLocationRaw
+                }
 
-const to = () => {
-    if (typeof value.toRoute === 'function') {
-        const routeLocationRaw = value.toRoute(props.routeName)
+                return { name: this.routeName }
+            }
 
-        if (routeLocationRaw) {
-            return routeLocationRaw
-        }
-
-        return { name: props.routeName }
-    }
-
-    return { name: props.routeName }
+            return { name: this.routeName }
+        },
+    },
 }
-
-const propsComponent = props.routeName
-    ? {
-          to: to(),
-      }
-    : null
 </script>
+
 <template>
     <component
-        :is="$props.routeName ? RouterLink : 'div'"
+        :is="$props.routeName ? 'RouterLink' : 'div'"
         v-bind="propsComponent"
         class="menu-item flex items-center gap-x-[12px] leading-[1.2] text-[16px]"
     >

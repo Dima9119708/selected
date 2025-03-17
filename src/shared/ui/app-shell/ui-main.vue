@@ -3,7 +3,7 @@
 <template>
     <main
         id="main"
-        class="p-[24px] relative overflow-auto"
+        class="p-[24px] relative overflow-auto overflow-x-hidden"
     >
         <slot />
     </main>

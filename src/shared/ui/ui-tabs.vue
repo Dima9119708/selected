@@ -3,6 +3,7 @@ import Tabs, { type TabsProps } from 'primevue/tabs'
 
 withDefaults(defineProps<TabsProps>(), {
     scrollable: true,
+    showNavigators: true,
 })
 </script>
 
@@ -14,13 +15,14 @@ withDefaults(defineProps<TabsProps>(), {
 
 <style>
 .p-tabs {
-    & button {
+    .p-tab {
         flex-shrink: 0;
         color: var(--sui-tabs_tab-color);
         font-size: var(--sui-typography_desktop_body_fontsize);
         line-height: 24px;
         padding: 10px 4px;
         border-radius: 6px;
+        border: 0;
 
         &[aria-selected='true'] {
             color: var(--sui-tabs_tab-color__hover);
@@ -31,17 +33,16 @@ withDefaults(defineProps<TabsProps>(), {
         }
     }
 
-    [data-pc-section='tablist'] {
-        overflow-x: auto;
-        display: flex;
-        gap: 20px;
-        position: relative;
-        margin-bottom: 10px;
-        border-bottom: 1px solid var(--sui-tabs_content-border-color);
-        border-radius: 1px;
+    .p-tablist-tab-list {
+        gap: 15px;
+        border: 0;
     }
 
-    [data-pc-section='activebar'] {
+    .p-tablist-nav-button {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .p-tablist-active-bar {
         position: absolute;
         top: calc(100% - 2px);
         height: 2px;

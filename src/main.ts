@@ -39,9 +39,7 @@ app.config.errorHandler = (err, instance, info) => {
     console.log('errorHandler => err, instance, info =>', err, instance, info)
 }
 
-app.use(PrimeVue, {
-    unstyled: true,
-} satisfies PrimeVueConfiguration)
+app.use(PrimeVue, {} satisfies PrimeVueConfiguration)
 
 app.use(VueQueryPlugin)
 app.use(i18n)

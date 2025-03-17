@@ -16,7 +16,10 @@ const tabModel = ref('0')
 </script>
 
 <template>
-    <Tabs v-model:value="tabModel">
+    <Tabs
+        v-model:value="tabModel"
+        scrollable
+    >
         <TabList>
             <Tab value="0">
                 {{ $t('prebuilt_servers') }}
