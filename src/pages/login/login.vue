@@ -2,15 +2,15 @@
 import { ErrorMessage, useForm } from 'vee-validate'
 import { ref, watch } from 'vue'
 
-import { useAuthStore } from '@/features/auth/use-auth'
+import { useAuthStore } from '@/components/containers/auth/use-auth'
 
-import SelectUsersByRoles from '@/entities/users/select-users-by-roles.vue'
-import type { TUser } from '@/entities/users/types'
+import SelectUsersByRoles from '@/components/containers/select-users-by-roles/select-users-by-roles.vue'
 
-import Button from '@/shared/ui/ui-button.vue'
-import InputText from '@/shared/ui/ui-input/ui-input-text.vue'
-import Password from '@/shared/ui/ui-input/ui-password.vue'
-import Label from '@/shared/ui/ui-label.vue'
+import Button from '@/components/ui/ui-button.vue'
+import InputText from '@/components/ui/ui-input/ui-input-text.vue'
+import Password from '@/components/ui/ui-input/ui-password.vue'
+import Label from '@/components/ui/ui-label.vue'
+import type { TUser } from '@/entities/users.ts'
 
 const { onLogin, data } = useAuthStore()
 

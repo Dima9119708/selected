@@ -4,14 +4,14 @@ import { storeToRefs } from 'pinia'
 import { defineAsyncComponent, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { useAuthStore } from '@/features/auth/use-auth.ts'
+import { useAuthStore } from '@/components/containers/auth/use-auth'
 
 const router = useRouter()
 
 const authStore = useAuthStore()
 const { isLoading: isAuthLoading, data } = storeToRefs(authStore)
 
-const AppComponent = defineAsyncComponent(() => import('@/app/app/app.vue'))
+const AppComponent = defineAsyncComponent(() => import('@/app/app.vue'))
 
 watch(data, () => {
     if (!data.value) {

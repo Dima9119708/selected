@@ -3,19 +3,19 @@ import ServersList from '@/pages/servers/ui/tabs/prebuilt-servers/ui/servers-lis
 import { provide, reactive, ref, toRaw, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import SelectBillingOption from '@/entities/billing-option/select-billing-option.vue'
-import SelectCPU from '@/entities/cpu/select-cpu.vue'
-import SelectOperatingSystem from '@/entities/operating-system/select-operating-system.vue'
-import SelectPrivateNetwork from '@/entities/private-network/select-private-network.vue'
-import SelectRegionsAndPools from '@/entities/region-and-pool/select-regions-and-pools.vue'
-import SelectServerTasks from '@/entities/server-tasks/select-server-tasks.vue'
+import SelectBillingOption from '@/components/containers/select-billing-option/select-billing-option.vue'
+import SelectCPU from '@/components/containers/select-cpu/select-cpu.vue'
+import SelectOperatingSystem from '@/components/containers/select-operating-system/select-operating-system.vue'
+import SelectPrivateNetwork from '@/components/containers/select-private-network/select-private-network.vue'
+import SelectRegionsAndPools from '@/components/containers/select-regions-and-pools/select-regions-and-pools.vue'
+import SelectServerTasks from '@/components/containers/select-server-tasks/select-server-tasks.vue'
 
-import Badge from '@/shared/ui/ui-badge/ui-badge.vue'
-import Button from '@/shared/ui/ui-button.vue'
-import Checkbox from '@/shared/ui/ui-checkbox.vue'
-import Label from '@/shared/ui/ui-label.vue'
-import RangeSlider from '@/shared/ui/ui-range/ui-range-slider.vue'
-import Select from '@/shared/ui/ui-select/ui-select.vue'
+import Badge from '@/components/ui/ui-badge/ui-badge.vue'
+import Button from '@/components/ui/ui-button.vue'
+import Checkbox from '@/components/ui/ui-checkbox.vue'
+import Label from '@/components/ui/ui-label.vue'
+import RangeSlider from '@/components/ui/ui-range/ui-range-slider.vue'
+import Select from '@/components/ui/ui-select/ui-select.vue'
 
 const availableServersAmount = ref(0)
 

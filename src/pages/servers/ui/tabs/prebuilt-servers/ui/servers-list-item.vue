@@ -2,9 +2,8 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Servers } from '@/entities/servers/types'
-
-import Icon from '@/shared/ui/ui-icon/ui-icon.vue'
+import Icon from '@/components/ui/ui-icon/ui-icon.vue'
+import type { Servers } from '@/entities/servers.ts'
 
 const props = defineProps<{
     name: Servers['name']

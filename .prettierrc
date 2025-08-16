@@ -9,13 +9,19 @@
 
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
+
     "^@/app/(.*)$",
-    "^@/widgets/(.*)$",
-    "^@/features/(.*)$",
+    "^@/config/(.*)$",
+    "^@/apis/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/stores/(.*)$",
     "^@/entities/(.*)$",
-    "^@/shared/(.*)$",
-    "^@/(./*)$",
-    "^[./]"
+
+    "^@/pages/(.*)$",
+    "^@/components/(.*)$",
+
+    "^[./](.*)$",
+    "./(.*)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

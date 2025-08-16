@@ -3,12 +3,11 @@ import { useInfiniteQuery } from '@tanstack/vue-query'
 import { useIntersectionObserver } from '@vueuse/core'
 import { type Ref, inject, useTemplateRef, watch } from 'vue'
 
-import { queryServers } from '@/entities/servers/queries.ts'
-
-import Button from '@/shared/ui/ui-button.vue'
-import Spinner from '@/shared/ui/ui-spinner.vue'
+import Button from '@/components/ui/ui-button.vue'
+import Spinner from '@/components/ui/ui-spinner.vue'
 
 import ServersListItem from './servers-list-item.vue'
+import { queryServers } from '@/utils/queries/servers.ts'
 
 const props = defineProps<{ formState: Record<string, any> }>()
 

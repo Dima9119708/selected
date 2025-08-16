@@ -3,16 +3,18 @@ import { createPinia } from 'pinia'
 import PrimeVue, { type PrimeVueConfiguration } from 'primevue/config'
 import { createApp } from 'vue'
 
-import { router } from '@/app/router/router.ts'
-import '@/app/styles/styles.css'
+import { router } from '@/app/router'
+import '@/app/styles.css'
 
-import { setupI18n } from '@/shared/configs/i18n/i18n'
-import '@/shared/configs/vee-validate/global-validate'
+import { setupI18n } from '@/config/i18n/i18n'
+import '@/config/vee-validate/global-validate'
 
 import App from './App.vue'
 
 const pinia = createPinia()
+
 const app = createApp(App)
+
 const i18n = setupI18n({
     locale: 'en',
     missingWarn: false,

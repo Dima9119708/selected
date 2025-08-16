@@ -1,11 +1,11 @@
 <script lang="ts" setup="">
 import { ref } from 'vue'
 
-import TabList from '@/shared/ui/ui-tab-list.vue'
-import TabPanel from '@/shared/ui/ui-tab-panel.vue'
-import TabPanels from '@/shared/ui/ui-tab-panels.vue'
-import Tab from '@/shared/ui/ui-tab.vue'
-import Tabs from '@/shared/ui/ui-tabs.vue'
+import TabList from '@/components/ui/ui-tab-list.vue'
+import TabPanel from '@/components/ui/ui-tab-panel.vue'
+import TabPanels from '@/components/ui/ui-tab-panels.vue'
+import Tab from '@/components/ui/ui-tab.vue'
+import Tabs from '@/components/ui/ui-tabs.vue'
 
 import FSTECServers from './ui/tabs/fstec-servers.vue'
 import GPUServerConfigurator from './ui/tabs/gpu-server-configurator.vue'
