@@ -4,17 +4,28 @@ import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
+<<<<<<< HEAD
 import { useAuthStore } from '@/components/containers/auth/use-auth'
 
 import SelectUsersByRoles from '@/components/containers/select-users-by-roles/select-users-by-roles.vue'
 
 import { loadLocaleMessages } from '@/config/i18n/i18n'
 import { ROUTE_PATHS } from '@/config/routes/routes'
+=======
+import { loadLocaleMessages } from '@/config/i18n/i18n'
+import { ROUTE_PATHS } from '@/config/routes/routes'
+
+import { useAuthStore } from '@/components/containers/auth/use-auth'
+>>>>>>> d136c49 (architecture-v2)
 import Header from '@/components/containers/header/ui-header.vue'
 import { useHeaderConfig } from '@/components/containers/header/use-header-config'
 import type { ToRoute } from '@/components/containers/navbar/types'
 import Navbar from '@/components/containers/navbar/ui-navbar.vue'
 import { useNavbarConfig } from '@/components/containers/navbar/use-navbar-config'
+<<<<<<< HEAD
+=======
+import SelectUsersByRoles from '@/components/containers/select-users-by-roles/select-users-by-roles.vue'
+>>>>>>> d136c49 (architecture-v2)
 
 const router = useRouter()
 const i18n = useI18n({
@@ -87,7 +98,14 @@ watch(
     >
         AppLoading...
     </div>
+<<<<<<< HEAD
     <div v-else class="grid grid-cols-[auto_1fr] grid-rows-[auto_64px_1fr] h-[100vh] overflow-hidden">
+=======
+    <div
+        v-else
+        class="grid grid-cols-[auto_1fr] grid-rows-[auto_64px_1fr] h-[100vh] overflow-hidden"
+    >
+>>>>>>> d136c49 (architecture-v2)
         <div class="col-span-full flex items-center justify-center p-[14px]">
             <strong>Sing in as</strong>
             <SelectUsersByRoles
