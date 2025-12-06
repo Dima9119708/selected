@@ -79,6 +79,14 @@ const headerConfig = useHeaderConfig(actionItems, {
     },
 })
 
+console.log('MAIN')
+console.log('MAIN')
+console.log('MAIN')
+console.log('MAIN')
+console.log('MAIN')
+console.log('MAIN')
+console.log('MAIN')
+
 const activeRouteName = computed(() => {
     if (typeof router.currentRoute.value.name === 'string') {
         return router.currentRoute.value.name
