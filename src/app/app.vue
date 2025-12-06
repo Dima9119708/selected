@@ -37,6 +37,12 @@ console.log('55555555555555555555555555555555')
 
 console.log('9933333333333333333333999999999999999333333333333333333339999999999999999999999999999999')
 
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
 const router = useRouter()
 const i18n = useI18n({
     useScope: 'global',
