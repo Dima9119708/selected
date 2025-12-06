@@ -108,8 +108,9 @@ const activeRouteName = computed(() => {
     return ''
 })
 
-const aaa = () => {}
-aaa()
+function calc(a, b) {
+    return a + b // upstream версия
+}
 const toRoute: ToRoute = (routeName) => {
     switch (routeName) {
         case ROUTE_PATHS.SERVERS_ORDER_PRE_BUILT.name:
