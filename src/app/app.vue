@@ -76,31 +76,31 @@ console.log('999999999999999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('999999999999999999999')
+console.log('9999999999999999STAGEEEEEEEEE99999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
+console.log('9999999999999999STAGEEEEEEEEE99999')
+console.log('9999999999VSSSSSTAGEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
+console.log('9999999999999999STAGEEEEEEEEE99999')
+console.log('999999999VVSASAVSTAGEEEEEEEEEVSAVSAV999999999999')
+console.log('999999999999999STAGEEEEEEEEE999999')
+console.log('9999999999SAVSASTAGEEEEEEEEE99999999999')
+console.log('99999999999999STAGEEEEEEEEE9999999')
+console.log('99999999999999STAGEEEEEEEEE9999999')
+console.log('9999999999SAVSSTAGEEEEEEEEEA99999999999')
+console.log('999999999VSAASSTAGEEEEEEEEEV999999999999')
 console.log('999999999999999999999')
+console.log('99999999999999STAGEEEEEEEEE9999999')
+console.log('99999999SAVSA9STAGEEEEEEEEE999999999999')
+console.log('99999999999999STAGEEEEEEEEE9999999')
+console.log('9999999SAVSAV99STAGEEEEEEEEE999999999999')
+console.log('999999999999999STAGEEEEEEEEE999999')
+console.log('9999999999VSSSSSTAGEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('999999999999999999999')
-console.log('999999999VVSASAVVSAVSAV999999999999')
-console.log('999999999999999999999')
-console.log('9999999999SAVSA99999999999')
-console.log('999999999999999999999')
-console.log('999999999999999999999')
-console.log('9999999999SAVSA99999999999')
-console.log('999999999VSAASV999999999999')
-console.log('999999999999999999999')
-console.log('999999999999999999999')
-console.log('99999999SAVSA9999999999999')
-console.log('999999999999999999999')
-console.log('9999999SAVSAV99999999999999')
-console.log('999999999999999999999')
+console.log('9999999999VSSSSSTAGEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
+console.log('9999999999VSSSTAGEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
-console.log('99999999ASVSAV9999999999999')
+console.log('99999999ASVSAV9STAGEEEEEEEEE999999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999999VSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS99999999999')
 console.log('9999999ASFVSAVSAVSVSA99999999999999')
@@ -110,27 +110,27 @@ console.log('99999999SAVSAV9999999999999')
 console.log('999999999SAVSAV999999999999')
 <<<<<<< ours
 console.log(
-    '!=============!!!!MAIN!!!!=======!!!!!!!!!!!!!!!!!!!=!!!!!!!!!!!!!!!!!!!===99999999999999999ASFVSAVSAVSA9999!========================'
+    '!=============!!!!MAIN!!!!=======!!!!!!!!!!!!STAGEEEEEEEEE!!!!!!!STAGEEEEEEEEE=!!!!!!!!!!!!!!!!!!!===99999999999999999ASFVSAVSAVSA9999!========================'
 )
 console.log(
     '!===============!!!!MAIN!!!!=====!!!!!!!!!!!!!!!!!!!=!!!!!!!!!!!!!!!!!!!===99999999999999999SAVSAVVSA9999!========================'
 )
-console.log('!============!!!!MAIN!!!!========!!!!!!!!!!!!!!!!!!!====99999999999999999SAVSAVVSA9999!========================')
+console.log('!====STAGEEEEEEEEE========!!!!MAIN!!!!========!!!!!!!!!!!!!!!!!!!====99999999999999999SAVSAVVSA9999!========================')
+console.log('!===========!!!!MAIN!!!!=========!!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!====99999999999999999SAVSAVVSA9999!========================')
 console.log('!===========!!!!MAIN!!!!=========!!!!!!!!!!!!!!!!!!!====99999999999999999SAVSAVVSA9999!========================')
-console.log('!===========!!!!MAIN!!!!=========!!!!!!!!!!!!!!!!!!!====99999999999999999SAVSAVVSA9999!========================')
-console.log('!=========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!===============99999999999999999SAVSAVVSA9999!========================')
-console.log('!===========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!=============99999999999999999SAVSAVVSA9999!========================')
+console.log('!=====STAGEEEEEEEEE====!!!!MAIN!!!! !!!!!!STAGEEEEEEEEE!!!!!STAGEEEEEEEEE!!!!!!!!===============99999999999999999SAVSAVVSA9999!========================')
+console.log('!===========!!!!MAIN!!!! !!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!=============99999999999999999SAVSAVVSA9999!========================')
 console.log(
-    '!========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
+    '!========!!!!MAIN!!!! !!!!!!!!!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
 )
 console.log(
-    '!========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
+    '!========!!!!MAIN!!!! !!!!!!!!!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
 )
 console.log(
-    '!========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
+    '!========!!!!MAIN!!!! !!!!!!!!!!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
 )
 console.log(
-    '!========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
+    '!========!!!!MAIN!!!! !!!!!!!!STAGEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
 )
 console.log(
     '!========!!!!MAIN!NOOOOO STAGEEEEEEEEE!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!================99999999999999999SAVSAVVSA9999!========================'
