@@ -23,7 +23,6 @@ const i18n = useI18n({
 const appLoading = ref(true)
 const authStore = useAuthStore()
 const { data, navigationItems, actionItems, permissionByRole } = storeToRefs(authStore)
-
 const navbarConfig = useNavbarConfig(navigationItems)
 
 const headerConfig = useHeaderConfig(actionItems, {
@@ -46,6 +45,8 @@ const activeRouteName = computed(() => {
     return ''
 })
 
+const aaa = () => {}
+aaa()
 const toRoute: ToRoute = (routeName) => {
     switch (routeName) {
         case ROUTE_PATHS.SERVERS_ORDER_PRE_BUILT.name:
