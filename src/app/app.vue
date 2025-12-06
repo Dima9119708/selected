@@ -49,7 +49,13 @@ const i18n = useI18n({
     useScope: 'global',
 })
 
+console.log('8888888888888888888')
+
 const appLoading = ref(true)
+const appLoading1 = ref(true)
+const appLoading2 = ref(true)
+const appLoading3 = ref(true)
+const appLoading4 = ref(true)
 const authStore = useAuthStore()
 const { data, navigationItems, actionItems, permissionByRole } = storeToRefs(authStore)
 const navbarConfig = useNavbarConfig(navigationItems)
