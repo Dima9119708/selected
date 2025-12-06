@@ -290,67 +290,19 @@ console.log('55555555555555555555555555555555')
 
 console.log('9933333333333333333333999999999999999333333333333333333339999999999999999999999999999999')
 
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
->>>>>>> theirs
-||||||| ancestor
-=======
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-
->>>>>>> theirs
-||||||| ancestor
-=======
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-
->>>>>>> theirs
-||||||| ancestor
-=======
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-
->>>>>>> theirs
-||||||| ancestor
-=======
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-
->>>>>>> theirs
-||||||| ancestor
-=======
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-console.log('==== MAIN ====')
-
->>>>>>> theirs
 const router = useRouter()
 const i18n = useI18n({
     useScope: 'global',
     
 })
 
+console.log('8888888888888888888')
+
 const appLoading = ref(true)
+const appLoading1 = ref(true)
+const appLoading2 = ref(true)
+const appLoading3 = ref(true)
+const appLoading4 = ref(true)
 const authStore = useAuthStore()
 const { data, navigationItems, actionItems, permissionByRole } = storeToRefs(authStore)
 const navbarConfig = useNavbarConfig(navigationItems)
@@ -1037,7 +989,7 @@ console.log('!========!!!!MAIN!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=======
 >>>>>>> theirs
 console.log('!=============!!!!MAIN!!!!===========99999999999999999SAVSAVVSA9999!========================')
 
->>>>>>> theirs
+console.log('========================999999999999999999999========================')
 const activeRouteName = computed(() => {
     if (typeof router.currentRoute.value.name === 'string') {
         return router.currentRoute.value.name

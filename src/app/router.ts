@@ -1,8 +1,17 @@
-import NotFound from '@/pages/not-found/not-found.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import ComingSoon from '@/components/containers/сoming-soon/сoming-soon.vue'
 import { ROUTE_PATHS } from '@/config/routes/routes.ts'
+
+import NotFound from '@/pages/not-found/not-found.vue'
+
+import ComingSoon from '@/components/containers/сoming-soon/сoming-soon.vue'
+
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
 
 export const router = createRouter({
     history: createWebHistory(),
