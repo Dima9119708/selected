@@ -6,12 +6,12 @@ import NotFound from '@/pages/not-found/not-found.vue'
 
 import ComingSoon from '@/components/containers/сoming-soon/сoming-soon.vue'
 
-console.log('==== STAGE ====')
-console.log('==== STAGE ====')
-console.log('==== STAGE ====')
-console.log('==== STAGE ====')
-console.log('==== STAGE ====')
-console.log('==== STAGE ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
+console.log('==== MAIN ====')
 
 export const router = createRouter({
     history: createWebHistory(),
