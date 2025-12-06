@@ -1,7 +1,14 @@
 <script lang="ts" setup="">
+import type { TBadge } from './types.ts'
+
 import Chip, { type ChipProps } from 'primevue/chip'
 
-import type { TBadge } from './types.ts'
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
+console.log('==== STAGE ====')
 
 const { variant } = defineProps<ChipProps & TBadge>()
 </script>
