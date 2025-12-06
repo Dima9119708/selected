@@ -47,6 +47,13 @@ const authStore = useAuthStore()
 const { data, navigationItems, actionItems, permissionByRole } = storeToRefs(authStore)
 const navbarConfig = useNavbarConfig(navigationItems)
 
+console.log('999999999999999999999')
+console.log('999999999999999999999')
+console.log('999999999999999999999')
+console.log('999999999999999999999')
+console.log('999999999999999999999')
+console.log('999999999999999999999')
+console.log('999999999999999999999')
 const headerConfig = useHeaderConfig(actionItems, {
     balance: {
         component: defineAsyncComponent(() => import('@/components/containers/balance/balance.vue')),
