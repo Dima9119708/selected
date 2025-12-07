@@ -1,11 +1,16 @@
 <script lang="ts" setup="">
-import Popover from 'primevue/popover'
-import { useTemplateRef } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
 import ComingSoon from '@/components/containers/сoming-soon/сoming-soon.vue'
 import Button from '@/components/ui/ui-button.vue'
+import Popover from '@/components/ui/ui-popover/ui-popover.vue'
 
 const op = useTemplateRef('op')
+const aaa = ref(false)
+
+const onclick = () => {
+  
+}
 
 const toggle = (event: Event) => {
     op.value!.toggle(event)
